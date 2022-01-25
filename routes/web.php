@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ HomeworkController::class, 'index' ])->name('home');
 
-Route::resource('homeworks', HomeworkController::class);
+Route::resource('/homeworks', HomeworkController::class);

@@ -15,7 +15,7 @@ class HomeworkController extends Controller
     public function index()
     {
         $homeworks = Homework::all();
-        return view('welcome', ['homeworks' => $homeworks]);
+        return view('homeworks.index', ['homeworks' => $homeworks]);
     }
 
     /**
@@ -58,7 +58,7 @@ class HomeworkController extends Controller
      */
     public function edit(Homework $homework)
     {
-        //
+        return view('homeworks.edit', ['homework' =>$homework]);
     }
 
     /**
@@ -70,7 +70,10 @@ class HomeworkController extends Controller
      */
     public function update(Request $request, Homework $homework)
     {
-        //
+        $data = $request->only(['review', 'grade']);
+        $homework->fill($data);
+        $homework->save();
+        return redirect()->route('homeworks.index');
     }
 
     /**

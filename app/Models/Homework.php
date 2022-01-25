@@ -9,6 +9,11 @@ class Homework extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'review',
+        'grade',
+    ];
+
     public function students() {
         return $this->belongsTo(User::class, 'student');
     }

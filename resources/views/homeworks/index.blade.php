@@ -20,6 +20,7 @@
                 <td><a href=" {{ $homework->url }}">Link</a></td>
                 <td>{{ $homework->review }}</td>
                 <td>{{ $homework->grade }}</td>
+                <td><a href="{{ route('homeworks.edit', $homework->id) }}"><button>Értékelés</button></td>
             </tr>
         @endforeach
     </table>
