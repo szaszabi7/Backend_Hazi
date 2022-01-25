@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeworkController;
+use App\Models\Homework;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ HomeworkController::class, 'index' ])->name('home');
+
+Route::resource('homeworks', HomeworkController::class);
