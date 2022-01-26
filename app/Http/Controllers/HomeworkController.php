@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Homework;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeworkController extends Controller
@@ -25,7 +26,7 @@ class HomeworkController extends Controller
      */
     public function create()
     {
-        //
+        return view('homeworks.create');
     }
 
     /**
@@ -36,7 +37,10 @@ class HomeworkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $adatok = $request->only(['student', 'url']);
+        $homework = new Homework();
+        $homework->fill($adatok)->save();
+        return redirect()->route('homeworks.index');
     }
 
     /**
@@ -84,6 +88,7 @@ class HomeworkController extends Controller
      */
     public function destroy(Homework $homework)
     {
-        //
+        $homework->delete();
+        return redirect()->route('homeworks.index');
     }
 }

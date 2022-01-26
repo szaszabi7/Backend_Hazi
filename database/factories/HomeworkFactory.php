@@ -15,7 +15,7 @@ class HomeworkFactory extends Factory
     public function definition()
     {
         return [
-            'student' => User::all()->random(),
+            'student' => $this->faker->name(),
             'url' => $this->faker->url(),
             'review' => '',
             'grade' => 0

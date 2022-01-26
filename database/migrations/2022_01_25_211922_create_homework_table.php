@@ -15,10 +15,10 @@ class CreateHomeworkTable extends Migration
     {
         Schema::create('homework', function (Blueprint $table) {
             $table->id();
-            $table->integer('student');
+            $table->string('student');
             $table->string('url');
-            $table->string('review');
-            $table->integer('grade');
+            $table->string('review')->nullable();
+            $table->integer('grade')->default(0);
             $table->timestamps();
         });
     }

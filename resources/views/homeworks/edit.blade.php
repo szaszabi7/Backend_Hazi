@@ -11,7 +11,7 @@
         @csrf
         @method('PUT')
         <div>
-            <h1>{{ $homework->students->name}}</h1>
+            <h1>{{ $homework->student}}</h1>
         </div>
         <div>
             Szöveges értékelés:<br>

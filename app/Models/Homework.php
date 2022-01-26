@@ -12,6 +12,8 @@ class Homework extends Model
     protected $fillable = [
         'review',
         'grade',
+        'student',
+        'url',
     ];
 
     public function students() {
