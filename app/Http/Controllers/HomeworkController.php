@@ -37,10 +37,19 @@ class HomeworkController extends Controller
      */
     public function store(Request $request)
     {
-        $adatok = $request->only(['student', 'url']);
-        $homework = new Homework();
-        $homework->fill($adatok)->save();
-        return redirect()->route('homeworks.index');
+        $validated = $request->validate([
+            'student' => 'required|max:255',
+            'url' => 'required|max:255'
+        ]);
+
+        if ($validated) {
+            $data = $request->only(['student', 'url']);
+            $homework = new Homework();
+            $homework->fill($data)->save();
+            return redirect()->route('homeworks.index');
+        } else {
+            return redirect()->route('homeworks.create');
+        }
     }
 
     /**
@@ -74,10 +83,18 @@ class HomeworkController extends Controller
      */
     public function update(Request $request, Homework $homework)
     {
-        $data = $request->only(['review', 'grade']);
-        $homework->fill($data);
-        $homework->save();
-        return redirect()->route('homeworks.index');
+        $validated = $request->validate([
+            'grade' => 'integer|min:0|max:5'
+        ]);
+
+        if ($validated) {
+            $data = $request->only(['review', 'grade']);
+            $homework->fill($data);
+            $homework->save();
+            return redirect()->route('homeworks.index');
+        } else {
+            return redirect()->route('homeworks.edit');
+        }
     }
 
     /**
